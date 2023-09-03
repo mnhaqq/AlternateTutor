@@ -5,7 +5,7 @@ const inputForm = document.getElementById('input-form');
 const inputField = document.getElementById('input-field');
 
 // Add event listener to input form
-inputForm.addEventListener('submit', function(event) {
+inputForm.addEventListener('submit', async function(event) {
   // Prevent form submission
   event.preventDefault();
 
@@ -24,7 +24,8 @@ inputForm.addEventListener('submit', function(event) {
     conversation.appendChild(message);
 
     // Generate chatbot response
-    const response = generateResponse(input);
+    const response = await generateResponse(input);
+    console.log(response)
 
     // Add chatbot response to conversation
     message = document.createElement('div');
@@ -36,26 +37,20 @@ inputForm.addEventListener('submit', function(event) {
 });
 
 // Generate chatbot response function
-function generateResponse(input) {
+async function generateResponse(input){
     // Add chatbot logic here
-    const responses = [
-      "Hello, how can I help you today? 😊",
-      "I'm sorry, I didn't understand your question. Could you please rephrase it? 😕",
-      "I'm here to assist you with any questions or concerns you may have. 📩",
-      "I'm sorry, I'm not able to browse the internet or access external information. Is there anything else I can help with? 💻",
-      "What would you like to know? 🤔",
-      "I'm sorry, I'm not programmed to handle offensive or inappropriate language. Please refrain from using such language in our conversation. 🚫",
-      "I'm here to assist you with any questions or problems you may have. How can I help you today? 🚀",
-      "Is there anything specific you'd like to talk about? 💬",
-      "I'm happy to help with any questions or concerns you may have. Just let me know how I can assist you. 😊",
-      "I'm here to assist you with any questions or problems you may have. What can I help you with today? 🤗",
-      "Is there anything specific you'd like to ask or talk about? I'm here to help with any questions or concerns you may have. 💬",
-      "I'm here to assist you with any questions or problems you may have. How can I help you today? 💡",
-    ];
-    
+    const url = `http://127.0.0.1:8000/ask?user_input=${encodeURIComponent(input)}`
+    data = ""
+    try {
+        const response = await fetch(url)
+        data = await response.json()
+        return data['response'];
+    } catch (error) {
+        console.error('Error:', error);
+        return "Error occured"
+    }
     // Return a random response
-    return responses[Math.floor(Math.random() * responses.length)];
-  }
+}
   
 // Dropdown menu
 const dropdownContent = document.getElementById("dropdown-content");
@@ -131,6 +126,41 @@ function createRandomIcon() {
 for (let i = 0; i < 20; i++) {
     createRandomIcon();
 }
+
+
+// function generateResponse(input) {
+//     document.addEventListener('DOMContentLoaded', () => {
+//         const questionForm = document.getElementById('question-form');
+//         const userInput = document.getElementById('user-input');
+//         const responseDisplay = document.getElementById('response-display');
+
+//         questionForm.addEventListener('submit', async (e) => {
+//             e.preventDefault();
+
+//             const userQuestion = userInput.value;
+
+//             try {
+//                 const response = await fetch('/ask', {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json',
+//                     },
+//                     body: JSON.stringify({ user_input: userQuestion }),
+//                 });
+
+//                 if (response.status === 200) {
+//                     const data = await response.json();
+//                     responseDisplay.innerHTML = data.response;
+//                 } else {
+//                     responseDisplay.innerHTML = 'Error: Inappropriate Question';
+//                 }
+//             } catch (error) {
+//                 console.error('Error:', error);
+//             }
+//         });
+//     });
+// }
+
 
 
 
