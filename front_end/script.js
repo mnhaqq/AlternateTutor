@@ -51,6 +51,7 @@ async function generateResponse(input){
     }
     // Return a random response
 }
+
   
 // Dropdown menu
 const dropdownContent = document.getElementById("dropdown-content");
