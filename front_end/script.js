@@ -128,6 +128,26 @@ for (let i = 0; i < 20; i++) {
     createRandomIcon();
 }
 
+const sidePanel = document.getElementById('side-panel');
+const toggleIcon = document.getElementById('toggle-icon');
+
+function toggleSidePanel() {
+    sidePanel.classList.toggle('show');
+
+    // Toggle the tooltip text based on the side panel's visibility
+    if (sidePanel.classList.contains('show')) {
+        toggleIcon.classList.remove('fa-bars');
+        toggleIcon.classList.add('fa-times');
+        toggleIcon.setAttribute('title', 'Close Side Panel');
+    } else {
+        toggleIcon.classList.remove('fa-times');
+        toggleIcon.classList.add('fa-bars');
+        toggleIcon.setAttribute('title', 'Open Side Panel');
+    }
+}
+
+toggleIcon.addEventListener('click', toggleSidePanel);
+
 
 // function generateResponse(input) {
 //     document.addEventListener('DOMContentLoaded', () => {
@@ -161,8 +181,4 @@ for (let i = 0; i < 20; i++) {
 //         });
 //     });
 // }
-
-
-
-
 

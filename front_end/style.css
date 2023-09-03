@@ -24,6 +24,12 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    .side-panel {
+        display: none;
+    }
+}
+
 .background-icons {
     position: absolute;
     top: 0;
@@ -244,10 +250,16 @@ p[sentTime]:hover::after {
     display: flex;
     flex-direction: column;
     align-items: center;
+    left: -270px;
+    transition: left 0.3s ease;
 }
 
-.close-button{
-    font-size: 25px;
+.show {
+    left: 0;
+}
+
+.side-panel-button{
+    font-size: 20px;
     display: flex;
     color: #f0f0f0;
     right: 0;
