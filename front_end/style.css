@@ -246,13 +246,23 @@ p[sentTime]:hover::after {
     align-items: center;
 }
 
+.close-button{
+    font-size: 25px;
+    display: flex;
+    color: #f0f0f0;
+    right: 0;
+    position: absolute;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
 .user-profile {
     color: #f0f0f0;
 }
 
 .user-profile i {
     font-size: 100px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .user-profile h3 {
     margin-left: 20px;
