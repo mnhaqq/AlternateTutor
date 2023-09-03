@@ -65,7 +65,7 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-left: 300px;
+    z-index: -1;
 }
 
 #chatbot {
@@ -241,7 +241,7 @@ p[sentTime]:hover::after {
 /* Side Panel Styles */
 .side-panel {
     width: 270px;
-    background-color: rgba(47, 79, 79, 0.75);
+    background-color: rgba(47, 79, 79, 0.85);
     padding: 20px;
     height: 100vh;
     position: fixed;
@@ -266,6 +266,7 @@ p[sentTime]:hover::after {
     position: absolute;
     margin-right: 10px;
     margin-top: 10px;
+    z-index: 1;
 }
 
 .user-profile {
